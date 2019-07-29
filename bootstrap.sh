@@ -81,8 +81,10 @@ run_vnc_server() {
         log_w "The VNC server will NOT ask for a password"
     fi
 
-    x11vnc -q -display ${DISPLAY} -forever ${passwordArgument} &
-    wait $!
+    until x11vnc -q -nowf -noscr -display ${DISPLAY} -forever ${passwordArgument} & wait $!; do
+        echo "x11vnc crashed with exit code $?.  Respawning.." >&2
+        sleep 1
+    done
 }
 
 log_i() {
