@@ -11,7 +11,7 @@ services:
      environment:
         - VNC_SERVER_PASSWORD=secret
         # +15d or -6d
-        - FAKETIME=+10d
+        # - FAKETIME=+10d
      shm_size: 512M
      user: puppy
      volumes:
